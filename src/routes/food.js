@@ -15,6 +15,7 @@ router.post('/food', async (req, res, next) => {
 // GET-READ
 router.get('/food', async (req, res, next) => {
   let allFoods = await foodInterface.readAll();
+  console.log('\n\n hi');
   res.status(200).send(allFoods);
 });
 
@@ -22,6 +23,10 @@ router.get('/food', async (req, res, next) => {
 router.get('/food/:id', async (req, res, next) => {
   let { id } = req.params;
   let oneFood = await foodInterface.readOne(id);
+  console.log(oneFood);
+  if (!oneFood ) {
+    return res.status(404).send('Food not found');
+  }
   res.status(200).send(oneFood);
 });
 

@@ -22,6 +22,10 @@ router.get('/person', async (req, res, next) => {
 router.get('/person/:id', async (req, res, next) => {
   let { id } = req.params;
   let onePerson = await personInterface.readOne(id);
+  console.log(onePerson);
+  if (!onePerson ) {
+    return res.status(404).send('Person not found');
+  }
   res.status(200).send(onePerson);
 });
 

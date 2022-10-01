@@ -8,6 +8,7 @@ class modelInterface {
   async create(json) {
     try {
       let instance = await this.model.create(json);
+      console.log({instance , json});
       return instance;
     } catch (err) {
       console.error(err);
@@ -17,7 +18,10 @@ class modelInterface {
 
   async readOne(id) {
     try {
+        console.log(this.model, 'im tired');
       let oneInstance = await this.model.findOne({ where: { id } });
+      console.log(oneInstance, 'im tired');
+
       return oneInstance;
     } catch (err) {
       console.error(err);

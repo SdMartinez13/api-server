@@ -1,8 +1,12 @@
+
 'use strict';
 
-function error500Handler(err, req, res, next) {
-  const error = err.message ? err.message : err;
-  res.status(500).send(error);
-}
-
-module.exports = error500Handler;
+module.exports = (error, req, res, next) => {
+//   console.log('error', error);
+  return res.status(500).send({
+    error: 500,
+    route: req.path,
+    query: req.query.body,
+    message: typeof (error) === 'string' ? error : `Server error: ${error.message}`,
+  });
+};
